@@ -537,15 +537,15 @@
                     <h3 style="color: var(--accent);">Faturamento</h3>
                     <div class="grid">
                         <div>
-                            <label>Uber (R$): <input type="number" id="uber" step="0.01" min="0" value="0.00"></label>
-                            <label>99 (R$): <input type="number" id="noventaenove" step="0.01" min="0" value="0.00"></label>
-                            <label>InDrive (R$): <input type="number" id="indrive" step="0.01" min="0" value="0.00"></label>
-                            <label>Particular/Outros (R$): <input type="number" id="particular" step="0.01" min="0" value="0.00"></label>
+                            <label>Uber (R$): <input type="number" id="uber" step="0.01" min="0" placeholder=""></label>
+                            <label>99 (R$): <input type="number" id="noventaenove" step="0.01" min="0" placeholder=""></label>
+                            <label>InDrive (R$): <input type="number" id="indrive" step="0.01" min="0" placeholder=""></label>
+                            <label>Particular/Outros (R$): <input type="number" id="particular" step="0.01" min="0" placeholder=""></label>
                         </div>
                         <div>
-                            <label>Quilometragem (KM): <input type="number" id="quilometragem" min="0" value="0"></label>
-                            <label>Total de Corridas: <input type="number" id="totalCorridas" min="0" value="0"></label>
-                            <label>Horas Trabalhadas: <input type="number" id="horasTrabalhadas" step="0.1" min="0" value="0.0"></label>
+                            <label>Quilometragem (KM): <input type="number" id="quilometragem" step="0.01" min="0" placeholder=""></label>
+                            <label>Total de Corridas: <input type="number" id="totalCorridas" step="0.01" min="0" placeholder=""></label>
+                            <label>Horas Trabalhadas: <input type="number" id="horasTrabalhadas" step="0.01" min="0" placeholder=""></label>
                         </div>
                     </div>
                     <h3 style="color: var(--accent);">Despesas</h3>
@@ -557,12 +557,12 @@
                                 <option value="etanol">Etanol</option>
                                 <option value="gnv">GNV</option>
                             </select>
-                            <label>Valor (R$): <input type="number" id="combustivelValor" step="0.01" min="0" value="0.00"></label>
+                            <label>Valor (R$): <input type="number" id="combustivelValor" step="0.01" min="0" placeholder=""></label>
                         </div>
                         <div>
-                            <label>Aluguel do Carro (R$): <input type="number" id="aluguel" step="0.01" min="0" value="0.00"></label>
-                            <label>Alimentação (R$): <input type="number" id="alimentacao" step="0.01" min="0" value="0.00"></label>
-                            <label>Outros (R$): <input type="number" id="outros" step="0.01" min="0" value="0.00"></label>
+                            <label>Aluguel do Carro (R$): <input type="number" id="aluguel" step="0.01" min="0" placeholder=""></label>
+                            <label>Alimentação (R$): <input type="number" id="alimentacao" step="0.01" min="0" placeholder=""></label>
+                            <label>Outros (R$): <input type="number" id="outros" step="0.01" min="0" placeholder=""></label>
                         </div>
                     </div>
                     <button type="button" onclick="adicionarTransacao()">Adicionar Transação</button>
