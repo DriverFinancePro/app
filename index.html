@@ -1006,7 +1006,7 @@ function ajustarRange(id, delta) {
                             filteredTransacoes.reduce((sum, t) => sum + t.indrive, 0),
                             filteredTransacoes.reduce((sum, t) => sum + t.particular, 0)
                         ],
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                        backgroundColor: ['#000000', '#FFCD00', '#C1F11D', '#4BC0C0']
                     }]
                 },
                 options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-primary') } } } }
@@ -1024,7 +1024,7 @@ function ajustarRange(id, delta) {
                             filteredTransacoes.reduce((sum, t) => sum + t.alimentacao, 0),
                             filteredTransacoes.reduce((sum, t) => sum + t.outros, 0)
                         ],
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                        backgroundColor: ['#FF6384', '#FF4444', '#FFCE56', '#4BC0C0']
                     }]
                 },
                 options: { responsive: true, scales: { y: { beginAtZero: true, ticks: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-primary') } } }, plugins: { legend: { labels: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-primary') } } } }
