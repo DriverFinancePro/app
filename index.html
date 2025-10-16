@@ -1393,6 +1393,7 @@ function ajustarRange(id, delta) {
 
         // Recuperar estado ao carregar a página
         window.addEventListener('load', () => {
+			document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
             updateTimerDisplay();
             if (timerRunning) {
                 timerInterval = setInterval(updateTimerDisplay, 1000);
