@@ -1328,86 +1328,87 @@ function ajustarRange(id, delta) {
 
 
 // --- Timer de Jornada ---
-let timerInterval;
-let startTime = parseInt(localStorage.getItem('timerStartTimeDF')) || null;
-let elapsedSeconds = parseInt(localStorage.getItem('timerElapsedDF')) || 0;
-let timerRunning = localStorage.getItem('timerRunningDF') === 'true';
+        let timerInterval;
+        let startTime = parseInt(localStorage.getItem('timerStartTimeDF')) || null;
+        let elapsedSeconds = parseInt(localStorage.getItem('timerElapsedDF')) || 0;
+        let timerRunning = localStorage.getItem('timerRunningDF') === 'true';
 
-function formatTime(seconds) {
-    const hours = Math.floor(seconds / 3600).toString().padStart(2, '0');
-    const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-    const secondsRemaining = (seconds % 60).toString().padStart(2, '0');
-    return `${hours}:${minutes}:${secondsRemaining}`;
-}
-
-function updateTimerDisplay() {
-    if (timerRunning && startTime) {
-        const now = Date.now();
-        elapsedSeconds = Math.floor((now - startTime) / 1000) + (parseInt(localStorage.getItem('timerElapsedDF')) || 0);
-        document.getElementById('timerDisplay').textContent = formatTime(elapsedSeconds);
-        localStorage.setItem('timerElapsedDF', elapsedSeconds);
-    } else {
-        document.getElementById('timerDisplay').textContent = formatTime(elapsedSeconds);
-    }
-}
-
-function startTimer() {
-    if (timerRunning) return;
-    timerRunning = true;
-    startTime = Date.now();
-    localStorage.setItem('timerStartTimeDF', startTime);
-    localStorage.setItem('timerRunningDF', 'true');
-    timerInterval = setInterval(updateTimerDisplay, 1000);
-    updateTimerDisplay(); // Atualiza imediatamente
-}
-
-function pauseTimer() {
-    if (!timerRunning) return;
-    timerRunning = false;
-    clearInterval(timerInterval);
-    localStorage.setItem('timerRunningDF', 'false');
-    localStorage.setItem('timerElapsedDF', elapsedSeconds);
-}
-
-function resetTimer() {
-    if (!timerRunning && elapsedSeconds === 0) return;
-    // Converter para horas decimais
-    const horasDecimais = (elapsedSeconds / 3600).toFixed(2);
-    // Preencher campo Horas Trabalhadas na aba Transações
-    const horasInput = document.getElementById('horasTrabalhadas');
-    if (horasInput) {
-        horasInput.value = horasDecimais;
-    }
-    // Zerar contagem
-    timerRunning = false;
-    clearInterval(timerInterval);
-    elapsedSeconds = 0;
-    startTime = null;
-    localStorage.setItem('timerElapsedDF', 0);
-    localStorage.setItem('timerStartTimeDF', '');
-    localStorage.setItem('timerRunningDF', 'false');
-    updateTimerDisplay();
-    alert(`Tempo total trabalhado: ${horasDecimais} horas.`);
-}
-
-// Recuperar estado ao carregar a página
-window.addEventListener('load', () => {
-    updateTimerDisplay();
-    if (timerRunning) {
-        timerInterval = setInterval(updateTimerDisplay, 1000);
-    }
-    document.getElementById('startTimer').addEventListener('click', startTimer);
-    document.getElementById('pauseTimer').addEventListener('click', pauseTimer);
-    document.getElementById('resetTimer').addEventListener('click', resetTimer);
-
-    // Atualizar timer quando a página voltar a ficar visível
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible' && timerRunning) {
-            updateTimerDisplay();
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600).toString().padStart(2, '0');
+            const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+            const secondsRemaining = (seconds % 60).toString().padStart(2, '0');
+            return `${hours}:${minutes}:${secondsRemaining}`;
         }
-    });
-});
-// --- Fim do Timer de Jornada ---
+
+        function updateTimerDisplay() {
+            if (timerRunning && startTime) {
+                const now = Date.now();
+                elapsedSeconds = Math.floor((now - startTime) / 1000) + (parseInt(localStorage.getItem('timerElapsedDF')) || 0);
+                document.getElementById('timerDisplay').textContent = formatTime(elapsedSeconds);
+            } else {
+                document.getElementById('timerDisplay').textContent = formatTime(elapsedSeconds);
+            }
+        }
+
+        function startTimer() {
+            if (timerRunning) return;
+            timerRunning = true;
+            startTime = Date.now();
+            localStorage.setItem('timerStartTimeDF', startTime);
+            localStorage.setItem('timerRunningDF', 'true');
+            timerInterval = setInterval(updateTimerDisplay, 1000);
+            updateTimerDisplay(); // Atualiza imediatamente
+        }
+
+        function pauseTimer() {
+            if (!timerRunning) return;
+            timerRunning = false;
+            clearInterval(timerInterval);
+            updateTimerDisplay(); // Garante que o tempo esteja atualizado antes de salvar
+            localStorage.setItem('timerRunningDF', 'false');
+            localStorage.setItem('timerElapsedDF', elapsedSeconds);
+        }
+
+        function resetTimer() {
+            if (!timerRunning && elapsedSeconds === 0) return;
+            updateTimerDisplay(); // Garante que o tempo esteja atualizado antes de resetar
+            // Converter para horas decimais
+            const horasDecimais = (elapsedSeconds / 3600).toFixed(2);
+            // Preencher campo Horas Trabalhadas na aba Transações
+            const horasInput = document.getElementById('horasTrabalhadas');
+            if (horasInput) {
+                horasInput.value = horasDecimais;
+            }
+            // Zerar contagem
+            timerRunning = false;
+            clearInterval(timerInterval);
+            elapsedSeconds = 0;
+            startTime = null;
+            localStorage.setItem('timerElapsedDF', 0);
+            localStorage.setItem('timerStartTimeDF', '');
+            localStorage.setItem('timerRunningDF', 'false');
+            updateTimerDisplay();
+            alert(`Tempo total trabalhado: ${horasDecimais} horas.`);
+        }
+
+        // Recuperar estado ao carregar a página
+        window.addEventListener('load', () => {
+            updateTimerDisplay();
+            if (timerRunning) {
+                timerInterval = setInterval(updateTimerDisplay, 1000);
+            }
+            document.getElementById('startTimer').addEventListener('click', startTimer);
+            document.getElementById('pauseTimer').addEventListener('click', pauseTimer);
+            document.getElementById('resetTimer').addEventListener('click', resetTimer);
+
+            // Atualizar timer quando a página voltar a ficar visível
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && timerRunning) {
+                    updateTimerDisplay();
+                }
+            });
+        });
+        // --- Fim do Timer de Jornada ---
 
 </script>
 </body>
