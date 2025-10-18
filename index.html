@@ -451,6 +451,7 @@
         <!-- Painel -->
         <section id="painel" class="active">
             <div id="metaNotification">Parabéns! Meta diária atingida!</div>
+			<div id="metaNotification" class="notification">Transação adicionada com sucesso!</div>
             
 <div class="meta-timer card" style="text-align:center; margin-bottom: 1.5rem;">
     <h2>Timer de Jornada</h2>
@@ -932,31 +933,36 @@ function ajustarRange(id, delta) {
 
         // Transações
         function adicionarTransacao() {
-            const novaTransacao = {
-                data: new Date().toISOString(),
-                uber: parseFloat(document.getElementById('uber').value) || 0.00,
-                noventaenove: parseFloat(document.getElementById('noventaenove').value) || 0.00,
-                indrive: parseFloat(document.getElementById('indrive').value) || 0.00,
-                particular: parseFloat(document.getElementById('particular').value) || 0.00,
-                quilometragem: parseFloat(document.getElementById('quilometragem').value) || 0,
-                totalCorridas: parseInt(document.getElementById('totalCorridas').value) || 0,
-                horasTrabalhadas: parseFloat(document.getElementById('horasTrabalhadas').value) || 0.0,
-                combustivel: { tipo: document.getElementById('combustivelTipo').value, valor: parseFloat(document.getElementById('combustivelValor').value) || 0.00 },
-                aluguel: parseFloat(document.getElementById('aluguel').value) || 0.00,
-                alimentacao: parseFloat(document.getElementById('alimentacao').value) || 0.00,
-                outros: parseFloat(document.getElementById('outros').value) || 0.00,
-                ganhosTotal: 0.00,
-                despesasTotal: 0.00
-            };
-            novaTransacao.ganhosTotal = novaTransacao.uber + novaTransacao.noventaenove + novaTransacao.indrive + novaTransacao.particular;
-            novaTransacao.despesasTotal = novaTransacao.combustivel.valor + novaTransacao.aluguel + novaTransacao.alimentacao + novaTransacao.outros;
+    const novaTransacao = {
+        data: new Date().toISOString(),
+        uber: parseFloat(document.getElementById('uber').value) || 0.00,
+        noventaenove: parseFloat(document.getElementById('noventaenove').value) || 0.00,
+        indrive: parseFloat(document.getElementById('indrive').value) || 0.00,
+        particular: parseFloat(document.getElementById('particular').value) || 0.00,
+        quilometragem: parseFloat(document.getElementById('quilometragem').value) || 0,
+        totalCorridas: parseInt(document.getElementById('totalCorridas').value) || 0,
+        horasTrabalhadas: parseFloat(document.getElementById('horasTrabalhadas').value) || 0.0,
+        combustivel: { tipo: document.getElementById('combustivelTipo').value, valor: parseFloat(document.getElementById('combustivelValor').value) || 0.00 },
+        aluguel: parseFloat(document.getElementById('aluguel').value) || 0.00,
+        alimentacao: parseFloat(document.getElementById('alimentacao').value) || 0.00,
+        outros: parseFloat(document.getElementById('outros').value) || 0.00,
+        ganhosTotal: 0.00,
+        despesasTotal: 0.00
+    };
+    novaTransacao.ganhosTotal = novaTransacao.uber + novaTransacao.noventaenove + novaTransacao.indrive + novaTransacao.particular;
+    novaTransacao.despesasTotal = novaTransacao.combustivel.valor + novaTransacao.aluguel + novaTransacao.alimentacao + novaTransacao.outros;
 
-            transacoes.unshift(novaTransacao);
-            localStorage.setItem('transacoesDF', JSON.stringify(transacoes));
-            limparForm();
-            atualizarTudo();
-            alert('Transação adicionada com sucesso!');
-        }
+    transacoes.unshift(novaTransacao);
+    localStorage.setItem('transacoesDF', JSON.stringify(transacoes));
+    limparForm();
+    atualizarTudo();
+
+    // Exibe notificação personalizada
+    const notification = document.getElementById('metaNotification');
+    notification.textContent = 'Transação adicionada com sucesso!';
+    notification.classList.add('show');
+    setTimeout(() => notification.classList.remove('show'), 5000); // Oculta após 5 segundos
+}
 
         function limparForm() {
     // Reseta todos os campos do formulário, exceto totalCorridas que ficará vazio
