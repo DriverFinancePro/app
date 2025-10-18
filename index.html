@@ -565,7 +565,7 @@
 </label>
                             <label>
     <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/total-rides-icon.png" class="icon" alt="Total de Corridas">
-    Total de Corridas: <input type="number" id="totalCorridas" min="0.01" value="0">
+    Total de Corridas: <input type="number" id="totalCorridas" min="0" value="0">
 </label>
                             <label>Horas Trabalhadas: <input type="number" id="horasTrabalhadas" step="0.01" min="0" placeholder=""></label>
                         </div>
@@ -959,8 +959,19 @@ function ajustarRange(id, delta) {
         }
 
         function limparForm() {
-            document.getElementById('transacaoForm').reset();
-        }
+    // Reseta todos os campos do formulário, exceto totalCorridas que ficará vazio
+    document.getElementById('uber').value = '';
+    document.getElementById('noventaenove').value = '';
+    document.getElementById('indrive').value = '';
+    document.getElementById('particular').value = '';
+    document.getElementById('quilometragem').value = '';
+    document.getElementById('horasTrabalhadas').value = '';
+    document.getElementById('combustivelValor').value = '';
+    document.getElementById('aluguel').value = '';
+    document.getElementById('alimentacao').value = '';
+    document.getElementById('outros').value = '';
+    document.getElementById('totalCorridas').value = ''; // Deixa o campo vazio
+}
 
         function excluirTransacao(index) {
             if (confirm('Tem certeza que deseja excluir esta transação?')) {
