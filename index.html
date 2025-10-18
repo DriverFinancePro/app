@@ -168,6 +168,13 @@
             --accent-lighter: #a786e1;
             --accent-lightest: #c3a8f1;
         }
+		.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.25rem;
+    vertical-align: text-bottom;
+    display: inline-block;
+}
         header {
             background: var(--bg-secondary);
             padding: 1rem;
@@ -537,32 +544,58 @@
                     <h3 style="color: var(--accent);">Faturamento</h3>
                     <div class="grid">
                         <div>
-                            <label>Uber (R$): <input type="number" id="uber" step="0.01" min="0" placeholder=""></label>
-                            <label>99 (R$): <input type="number" id="noventaenove" step="0.01" min="0" placeholder=""></label>
-                            <label>InDrive (R$): <input type="number" id="indrive" step="0.01" min="0" placeholder=""></label>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/uber-icon.png" class="icon" alt="Uber">
+    Uber (R$): <input type="number" id="uber" step="0.01" min="0" placeholder="">
+</label>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/noventaenove-icon.png" class="icon" alt="99">
+    99 (R$): <input type="number" id="noventaenove" step="0.01" min="0" placeholder="">
+</label>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/indrive-icon.png" class="icon" alt="InDrive">
+    InDrive (R$): <input type="number" id="indrive" step="0.01" min="0" placeholder="">
+</label>
                             <label>Particular/Outros (R$): <input type="number" id="particular" step="0.01" min="0" placeholder=""></label>
                         </div>
                         <div>
-                            <label>Quilometragem (KM): <input type="number" id="quilometragem" step="0.01" min="0" placeholder=""></label>
-                            <label>Total de Corridas: <input type="number" id="totalCorridas" step="0.01" min="0" placeholder=""></label>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/kilometer-icon.png" class="icon" alt="Quilometragem">
+    Quilometragem (KM): <input type="number" id="quilometragem" step="0.01" min="0" placeholder="">
+</label>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/total-rides-icon.png" class="icon" alt="Total de Corridas">
+    Total de Corridas: <span id="totalCorridasDia">0</span>
+</label>
                             <label>Horas Trabalhadas: <input type="number" id="horasTrabalhadas" step="0.01" min="0" placeholder=""></label>
                         </div>
                     </div>
                     <h3 style="color: var(--accent);">Despesas</h3>
                     <div class="grid">
                         <div>
-                            <label>Combustível:</label>
-                            <select id="combustivelTipo">
-                                <option value="gasolina">Gasolina</option>
-                                <option value="etanol">Etanol</option>
-                                <option value="gnv">GNV</option>
-                            </select>
-                            <label>Valor (R$): <input type="number" id="combustivelValor" step="0.01" min="0" placeholder=""></label>
-                        </div>
-                        <div>
-                            <label>Aluguel do Carro (R$): <input type="number" id="aluguel" step="0.01" min="0" placeholder=""></label>
-                            <label>Alimentação (R$): <input type="number" id="alimentacao" step="0.01" min="0" placeholder=""></label>
-                            <label>Outros (R$): <input type="number" id="outros" step="0.01" min="0" placeholder=""></label>
+    <label>
+        <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/fuel-icon.png" class="icon" alt="Combustível">
+        Combustível:
+    </label>
+    <select id="combustivelTipo">
+        <option value="gasolina">Gasolina</option>
+        <option value="etanol">Etanol</option>
+        <option value="gnv">GNV</option>
+    </select>
+    <label>Valor (R$): <input type="number" id="combustivelValor" step="0.01" min="0" placeholder=""></label>
+</div>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/car-rental-icon.png" class="icon" alt="Aluguel do Carro">
+    Aluguel do Carro (R$): <input type="number" id="aluguel" step="0.01" min="0" placeholder="">
+</label>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/food-icon.png" class="icon" alt="Alimentação">
+    Alimentação (R$): <input type="number" id="alimentacao" step="0.01" min="0" placeholder="">
+</label>
+                            <label>
+    <img src="https://raw.githubusercontent.com/DriverFinancePro/driverfinance-icons/main/others-icon.png" class="icon" alt="Outros">
+    Outros (R$): <input type="number" id="outros" step="0.01" min="0" placeholder="">
+</label>
                         </div>
                     </div>
                     <button type="button" onclick="adicionarTransacao()">Adicionar Transação</button>
